@@ -1,0 +1,11 @@
+.dot {
+  width: 4em;
+  height: 4em;
+  background-color: blue;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+p {
+  font-size: 2em;
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Learning React - Dot Click</title>
+    <script crossorigin src="https://unpkg.com/react@15/dist/react.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@15/dist/react-dom.min.js"></script>
+    <script crossorigin src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js" type="text/javascript"></script>
+    </script>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div id="react-container">
+    </div>
+    <script type="text/babel">
+
+      class Dot extends React.Component {
+        constructor() {
+          super()
+          this.state = {
+            count: 0
+          }
+          this.click = this.click.bind(this)
+        }
+        click() {
+          this.setState({
+            count: this.state.count + 1
+          })
+        }
+        render() {
+          return (
+            <div>
+              <h1>{this.props.title}</h1>
+              <div className="dot" onClick={this.click}></div>
+              <p>clicks: {this.state.count}</p>
+            </div>
+          )
+        }
+      }
+
+      ReactDOM.render(<Dot title="Click the Dot" />,
+                           document.getElementById('react-container'))
+
+    </script>
+  </body>
+</html>

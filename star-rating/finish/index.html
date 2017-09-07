@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Learning React</title>
+    <script crossorigin src="https://unpkg.com/react@15/dist/react.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@15/dist/react-dom.min.js"></script>
+    <script crossorigin src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js" type="text/javascript"></script>
+    </script>
+    <link rel="stylesheet" href="style.css"/>
+  </head>
+  <body>
+    <div id="react-container">
+    </div>
+    <script type="text/babel">
+
+    class Star extends React.Component {
+        render() {
+          return (
+            <div className={(this.props.selected) ? "star selected" : "star"}
+                 onClick={this.props.onClick}>
+            </div>
+          )
+        }
+
+    }
+
+    class StarRating extends React.Component {
+      constructor(props) {
+        super(props)
+        this.state = {
+          starsSelected: 0
+        }
+        this.change = this.change.bind(this)
+      }
+      change(starsSelected) {
+        this.setState({
+          starsSelected: starsSelected
+        })
+      }
+      render() {
+        return (
+            <div className="star-rating">
+                {[...Array(this.props.totalStars)].map((n, i) =>
+                    <Star key={i}
+                          selected={i<this.state.starsSelected}
+                          onClick={() => this.change(i+1)}
+                    />
+                )}
+                <p>{this.state.starsSelected} of {this.props.totalStars} stars</p>
+            </div>
+        )
+      }
+    }
+
+    ReactDOM.render(<StarRating totalStars={5}/>,
+                    document.getElementById('react-container'))
+
+    </script>
+  </body>
+</html>
